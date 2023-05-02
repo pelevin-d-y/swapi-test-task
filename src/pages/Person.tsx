@@ -1,9 +1,10 @@
+import { fetchPerson, selectPerson } from '../features/person/personSlice'
+import { Loader } from '../components/Loader/Loader'
+import { useAppDispatch, useAppSelector } from '../app/hooks'
+
 import { Box, Link, Typography } from '@mui/material'
 import { useEffect, useMemo } from 'react'
 import { useParams } from 'react-router-dom'
-import { fetchPerson, selectPerson } from '../features/person/personSlice'
-import { useAppDispatch, useAppSelector } from '../app/hooks'
-import { Loader } from '../components/Loader/Loader'
 import { DataGrid } from '@mui/x-data-grid'
 
 type Row = {

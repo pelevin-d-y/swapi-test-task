@@ -1,6 +1,8 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { client } from '../../api'
-import { RootState } from '../../app/store'
+
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+
+import type { RootState } from '../../app/store'
 
 type PeopleState = {
   people: Person[]

@@ -1,6 +1,7 @@
 import { Box } from '@mui/material'
-import s from './Loader.module.css'
 import clsx from 'clsx'
+
+import s from './loader.module.css'
 
 export const Loader = () => {
   return (

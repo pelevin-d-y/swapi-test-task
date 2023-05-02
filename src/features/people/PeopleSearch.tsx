@@ -1,6 +1,7 @@
-import { SxProps, TextField, Theme } from '@mui/material'
-
+import { TextField } from '@mui/material'
 import { useSearchParams } from 'react-router-dom'
+
+import type { SxProps, Theme } from '@mui/material'
 
 type PeopleSearchProps = {
   sx?: SxProps<Theme> | undefined

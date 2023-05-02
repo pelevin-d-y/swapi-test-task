@@ -1,6 +1,6 @@
-import { Typography } from '@mui/material'
-
 import { People } from '../features/people/People'
+
+import { Typography } from '@mui/material'
 
 function App() {
   return (

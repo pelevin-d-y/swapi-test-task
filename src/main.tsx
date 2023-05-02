@@ -1,14 +1,14 @@
+import { Person } from './pages/Person.tsx'
+import { store } from './app/store.ts'
+import Main from './pages/Main.tsx'
+
 import React from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-
 import ReactDOM from 'react-dom/client'
 import { Provider as ReduxProvider } from 'react-redux'
+import { Container } from '@mui/material'
 
 import 'normalize.css'
-import { store } from './app/store.ts'
-import { Container } from '@mui/material'
-import Main from './pages/Main.tsx'
-import { Person } from './pages/Person.tsx'
 
 const router = createBrowserRouter([
   {

@@ -1,12 +1,14 @@
-import { Box, Grid, Typography } from '@mui/material'
-import { useEffect, useMemo } from 'react'
-import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { fetchPeople, selectPeople } from './peopleSlice'
+import { PeopleSearch } from './PeopleSearch'
+
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { Loader } from '../../components/Loader/Loader'
 import { Card } from '../../components/Card/Card'
-import { PeopleSearch } from './PeopleSearch'
-import { useSearchParams } from 'react-router-dom'
 import { Pagination } from '../../components/Pagination/Pagination'
+
+import { Box, Grid, Typography } from '@mui/material'
+import { useEffect, useMemo } from 'react'
+import { useSearchParams } from 'react-router-dom'
 
 export const People = () => {
   const dispatch = useAppDispatch()
