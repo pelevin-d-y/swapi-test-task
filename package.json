@@ -13,6 +13,7 @@
     "@emotion/react": "^11.10.8",
     "@emotion/styled": "^11.10.8",
     "@mui/material": "^5.12.2",
+    "@mui/x-data-grid": "^6.3.0",
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.4.0",
     "clsx": "^1.2.1",
