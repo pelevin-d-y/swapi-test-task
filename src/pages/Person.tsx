@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material'
+import { Box, Link, Typography } from '@mui/material'
 import { useEffect, useMemo } from 'react'
 import { useParams } from 'react-router-dom'
 import { fetchPerson, selectPerson } from '../features/person/personSlice'
@@ -50,6 +50,9 @@ export const Person = () => {
 
   return (
     <Box>
+      <Link href="/" fontSize={20}>
+        Back
+      </Link>
       {person ? (
         <>
           <Typography variant="h1" gutterBottom>

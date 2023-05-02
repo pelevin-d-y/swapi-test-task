@@ -22,9 +22,13 @@ const initialState: PeopleState = {
 
 export const fetchPeople = createAsyncThunk(
   'people/fetchPeople',
-  async (page: number) => {
+  async ({ page, searchParam }: { page: string; searchParam?: string }) => {
+    let url = new URL('https://swapi.dev/api/people/')
+    url.searchParams.append('page', page.toString())
+    if (searchParam) url.searchParams.append('search', searchParam)
+
     const response = await client.get<PaginatedResponse<Person[]>>(
-      `/people/?page=${page}`
+      url.toString()
     )
     return response
   }
