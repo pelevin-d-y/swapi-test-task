@@ -38,7 +38,7 @@ export const Person = () => {
     const rows = Object.entries(person).reduce<Row[]>((acc, [key, value]) => {
       if (Array.isArray(value)) return acc
 
-      let newValue =
+      const newValue =
         key === 'created' || key === 'edited'
           ? new Date(value).toLocaleString()
           : value

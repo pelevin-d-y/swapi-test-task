@@ -1,4 +1,4 @@
-import { client } from '../../api'
+import { client } from '../../api/client'
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 

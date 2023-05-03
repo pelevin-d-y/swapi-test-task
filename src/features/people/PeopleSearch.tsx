@@ -19,6 +19,7 @@ export const PeopleSearch = ({ sx }: PeopleSearchProps) => {
       fullWidth
       onKeyPress={(e) => {
         if (e.key === 'Enter') {
+          // eslint-disable-next-line @typescript-eslint/no-extra-semi
           ;(e.target as HTMLInputElement).blur()
         }
       }}

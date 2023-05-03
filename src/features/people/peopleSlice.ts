@@ -1,4 +1,5 @@
-import { client } from '../../api'
+import { swapiAxiosInstance } from '../../api'
+import { client } from '../../api/client'
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
@@ -25,7 +26,8 @@ const initialState: PeopleState = {
 export const fetchPeople = createAsyncThunk(
   'people/fetchPeople',
   async ({ page, searchParam }: { page: string; searchParam?: string }) => {
-    let url = new URL('https://swapi.dev/api/people/')
+    const url = new URL(swapiAxiosInstance.defaults.baseURL + '/people/')
+
     url.searchParams.append('page', page.toString())
     if (searchParam) url.searchParams.append('search', searchParam)
 
