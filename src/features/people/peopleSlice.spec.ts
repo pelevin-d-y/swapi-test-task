@@ -1,4 +1,4 @@
-import { fetchPeople, peopleSlice, selectPeople } from './peopleSlice'
+import { fetchPeople, peopleSlice } from './peopleSlice'
 
 import { swapiAxiosInstance } from '../../api'
 

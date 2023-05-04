@@ -5,7 +5,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 import type { RootState } from '../../app/store'
 
-type PeopleState = {
+export type PeopleState = {
   people: Person[]
   meta: {
     count: number

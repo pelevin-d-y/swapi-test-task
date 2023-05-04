@@ -1,4 +1,3 @@
-import counterReducer from '../features/counter/counterSlice'
 import { peopleSlice } from '../features/people/peopleSlice'
 import { personSlice } from '../features/person/personSlice'
 
@@ -8,7 +7,6 @@ import type { ThunkAction, Action } from '@reduxjs/toolkit'
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
     people: peopleSlice.reducer,
     person: personSlice.reducer,
   },

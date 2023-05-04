@@ -13,6 +13,7 @@ import { useSearchParams } from 'react-router-dom'
 export const People = () => {
   const dispatch = useAppDispatch()
   const { people, meta, status } = useAppSelector(selectPeople)
+
   const [searchParams] = useSearchParams()
 
   useEffect(() => {
