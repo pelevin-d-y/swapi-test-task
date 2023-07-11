@@ -54,16 +54,13 @@ describe('fetchPeople', () => {
     }
     mockClientGet.mockResolvedValueOnce(mockPayload)
     await store.dispatch(fetchPeople({ page: '1', searchParam: 'Skywalker' }))
-    await waitFor(() => {
-      const state = store.getState().people
-
-      expect(state.status).toBe('succeeded')
-      expect(state.people).toEqual(mockPayload.results)
-      expect(state.meta?.count).toBe(mockPayload.count)
-      expect(state.meta?.next).toBe(mockPayload.next)
-      expect(state.meta?.previous).toBe(mockPayload.previous)
-      expect(state.error).toBe(null)
-    })
+    const state = store.getState().people
+    expect(state.status).toBe('succeeded')
+    expect(state.people).toEqual(mockPayload.results)
+    expect(state.meta?.count).toBe(mockPayload.count)
+    expect(state.meta?.next).toBe(mockPayload.next)
+    expect(state.meta?.previous).toBe(mockPayload.previous)
+    expect(state.error).toBe(null)
   })
 
   test('should update state correctly on rejected', async () => {

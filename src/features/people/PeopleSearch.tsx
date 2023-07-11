@@ -1,34 +1,35 @@
-import { TextField } from '@mui/material'
+import { Button, Stack, TextField } from '@mui/material'
 import { useSearchParams } from 'react-router-dom'
+import { useCallback, useState } from 'react'
 
-import type { SxProps, Theme } from '@mui/material'
-
-type PeopleSearchProps = {
-  sx?: SxProps<Theme> | undefined
-}
-
-export const PeopleSearch = ({ sx }: PeopleSearchProps) => {
+export const PeopleSearch = () => {
   const [searchParams, setSearchParams] = useSearchParams()
+  const [search, setSearch] = useState(searchParams.get('search') || '')
+
+  const handleSearch = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault()
+
+      if (search) {
+        return setSearchParams({ search })
+      }
+      setSearchParams('')
+    },
+    [search, setSearchParams]
+  )
 
   return (
-    <TextField
-      sx={sx}
-      label="Search"
-      variant="outlined"
-      defaultValue={searchParams.get('search') || ''}
-      fullWidth
-      onKeyPress={(e) => {
-        if (e.key === 'Enter') {
-          // eslint-disable-next-line @typescript-eslint/no-extra-semi
-          ;(e.target as HTMLInputElement).blur()
-        }
-      }}
-      onBlur={(e) => {
-        if (e.target.value) {
-          return setSearchParams({ search: e.target.value })
-        }
-        setSearchParams('')
-      }}
-    />
+    <form onSubmit={handleSearch}>
+      <Stack direction="row" spacing={2}>
+        <TextField
+          label="Search"
+          variant="outlined"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          fullWidth
+        />
+        <Button type="submit">Search</Button>
+      </Stack>
+    </form>
   )
 }

@@ -1,5 +1,5 @@
 import { Pagination as MuiPagination } from '@mui/material'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
 type PaginationProps = {
@@ -15,6 +15,18 @@ export const Pagination = ({ disabled, count }: PaginationProps) => {
     setPage(parseInt(searchParams.get('page') || '1'))
   }, [searchParams])
 
+  const handlePageChange = useCallback(
+    (_: React.ChangeEvent<unknown>, page: number) => {
+      const params: Record<string, string> = {}
+      searchParams.forEach((value, key) => {
+        params[key] = value
+      })
+
+      setSearchParams({ ...params, page: page.toString() })
+    },
+    [setSearchParams, searchParams]
+  )
+
   return (
     <MuiPagination
       disabled={disabled}
@@ -27,14 +39,7 @@ export const Pagination = ({ disabled, count }: PaginationProps) => {
         display: 'flex',
         justifyContent: 'center',
       }}
-      onChange={(_, page) => {
-        const params: Record<string, string> = {}
-        searchParams.forEach((value, key) => {
-          params[key] = value
-        })
-
-        setSearchParams({ ...params, page: page.toString() })
-      }}
+      onChange={handlePageChange}
     />
   )
 }

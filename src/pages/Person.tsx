@@ -1,6 +1,7 @@
 import { fetchPerson, selectPerson } from '../features/person/personSlice'
 import { Loader } from '../components/Loader/Loader'
 import { useAppDispatch, useAppSelector } from '../app/hooks'
+import { routes } from '../app/routes'
 
 import { Box, Link, Typography } from '@mui/material'
 import { useEffect, useMemo } from 'react'
@@ -19,7 +20,7 @@ export const Person = () => {
   const { person } = useAppSelector(selectPerson)
 
   useEffect(() => {
-    dispatch(fetchPerson(id!))
+    if (id) dispatch(fetchPerson(id))
   }, [id])
 
   const gridData = useMemo(() => {
@@ -51,7 +52,7 @@ export const Person = () => {
 
   return (
     <Box>
-      <Link href="/" fontSize={20}>
+      <Link href={routes.HOME} fontSize={20}>
         Back
       </Link>
       {person ? (
@@ -60,7 +61,7 @@ export const Person = () => {
             {person?.name}
           </Typography>
 
-          {gridData ? <DataGrid {...gridData} /> : null}
+          {gridData && <DataGrid {...gridData} />}
         </>
       ) : (
         <Loader />

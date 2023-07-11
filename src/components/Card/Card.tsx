@@ -1,3 +1,5 @@
+import { routes } from '../../app/routes'
+
 import {
   CardActions,
   CardContent,
@@ -36,7 +38,7 @@ export const Card = ({ person }: CardType) => {
       </CardContent>
       <CardActions sx={{ marginTop: 'auto' }}>
         <Link
-          href={`/person/${getPersonId(person.url)}`}
+          href={routes.PERSON.replace(':id', getPersonId(person.url))}
           underline="none"
           sx={{ padding: 1 }}
         >

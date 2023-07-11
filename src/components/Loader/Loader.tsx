@@ -3,7 +3,11 @@ import clsx from 'clsx'
 
 import s from './loader.module.css'
 
-export const Loader = () => {
+type LoaderProps = {
+  className?: string
+}
+
+export const Loader = ({ className }: LoaderProps) => {
   return (
     <Box
       sx={{
@@ -11,6 +15,7 @@ export const Loader = () => {
         alignItems: 'center',
         justifyContent: 'center',
       }}
+      className={className}
     >
       <div className={s.box}>
         <div className={s.loader}>

@@ -1,14 +1,15 @@
 import { fetchPeople, selectPeople } from './peopleSlice'
 import { PeopleSearch } from './PeopleSearch'
+import { PeopleCards } from './PeopleCards'
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { Loader } from '../../components/Loader/Loader'
-import { Card } from '../../components/Card/Card'
 import { Pagination } from '../../components/Pagination/Pagination'
 
-import { Box, Grid, Typography } from '@mui/material'
-import { useEffect, useMemo } from 'react'
+import { Box } from '@mui/material'
+import { useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
+
+const CARDS_PER_PAGE = 10
 
 export const People = () => {
   const dispatch = useAppDispatch()
@@ -17,6 +18,7 @@ export const People = () => {
   const [searchParams] = useSearchParams()
 
   useEffect(() => {
+    // function is called twice on page load only in dev mode.
     dispatch(
       fetchPeople({
         page: searchParams.get('page') || '1',
@@ -25,41 +27,18 @@ export const People = () => {
     )
   }, [searchParams, fetchPeople])
 
-  const Cards = useMemo(() => {
-    switch (true) {
-      case status === 'loading' && !people.length:
-        return <Loader />
-      case status === 'succeeded' && !people.length:
-        return <Typography textAlign="center">People not found</Typography>
-      case status === 'failed':
-        return (
-          <Typography textAlign="center" color="red">
-            Something went wrong
-          </Typography>
-        )
-      default:
-        return (
-          <Grid container spacing={2} sx={{ mb: 5 }}>
-            {people.map((person) => (
-              <Grid key={person.name} item xs={12} sm={4} md={3}>
-                <Card person={person} />
-              </Grid>
-            ))}
-          </Grid>
-        )
-    }
-  }, [status, people])
-
   return (
     <Box>
-      <PeopleSearch sx={{ mb: 3 }} />
+      <Box sx={{ mb: 3 }}>
+        <PeopleSearch />
+      </Box>
 
-      {Cards}
+      <PeopleCards people={people} status={status} />
 
       {meta?.count !== undefined && meta.count > 0 && (
         <Pagination
           disabled={status === 'loading'}
-          count={Math.ceil(meta?.count / 10)}
+          count={Math.ceil(meta?.count / CARDS_PER_PAGE)}
         />
       )}
     </Box>
